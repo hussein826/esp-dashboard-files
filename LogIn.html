@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+
+*
+/* Fullscreen Video Background */
+.video-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
+z-index: -1;
+}
+
+.video-container video {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+object-fit: cover;
+}
+
+/* Content on top of video */
+.content {
+position: relative;
+z-index: 1;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+.login-container {
+background: rgba(255, 255, 255, 0.8);
+padding: 30px;
+border-radius: 10px;
+text-align: center;
+width: 500px;
+
+}
+
+.login-container p {
+font-size: 20px;
+}
+
+.login-container input{  
+display: block;    
+width: 50%; ;
+padding: 10px;
+font-size: 15px;
+margin: 10px auto;
+border: 2px solid #ccc;
+border-radius: 8px;
+}
+.login-container button {
+width: 30%; 
+height: 50px; 
+font-size: 15px; 
+padding: 12px; 
+background-color: rgb(143, 6, 6); 
+color: white;
+border: none;
+border-radius: 8px; 
+cursor: pointer; 
+transition: all 0.3s ease; 
+}
+
+
+button:hover {
+background-color: rgb(49, 0, 0);
+}
+
+
+
+
+
+
+
+
+    </style>
+  
+</head>
+<body>
+    
+    <div class="video-container">
+    <video autoplay loop muted playsinline>
+        <source src=" https://github.com/hussein826/esp-dashboard-files/raw/main/video.mp4 " type="video/mp4">
+    
+    </video>
+    <div class="content">
+        <div class="login-container">
+            <h1>Welcome</h1>
+            <p>Be cautious! There are legal restrictions.</p>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loginForm = document.getElementById("loginForm");
+  
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form refresh
+  
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+  
+        if (!username || !password) {
+          alert("Please fill in both fields.");
+          return;
+        }
+  
+        // Check credentials
+        if (username === "admin" && password === "1234") {
+          // Redirect to ESP8266 dashboard (hosted on ESP)
+          window.location.href = "http://192.168.1.100/static/Dashboard.html";
+        } else {
+          alert("Invalid username or password.");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
